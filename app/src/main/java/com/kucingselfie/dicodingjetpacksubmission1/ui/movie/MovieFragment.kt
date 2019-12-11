@@ -6,28 +6,31 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 
 import com.kucingselfie.dicodingjetpacksubmission1.R
+import com.kucingselfie.dicodingjetpacksubmission1.databinding.MovieFragmentBinding
 
 class MovieFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = MovieFragment()
-    }
-
     private lateinit var viewModel: MovieViewModel
+    private lateinit var binding: MovieFragmentBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.movie_fragment, container, false)
+        binding = MovieFragmentBinding.inflate(inflater)
+        return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(MovieViewModel::class.java)
-        // TODO: Use the ViewModel
+        binding.lifecycleOwner = this
+        binding.viewmodel = viewModel
+        binding.rvMovie.adapter = MovieAdapter()
     }
 
 }

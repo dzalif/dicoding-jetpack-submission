@@ -93,7 +93,7 @@ object DataDummy {
         return tvShows
     }
 
-    private fun generateMovies(): List<Movie> {
+    fun generateMovies(): List<Movie> {
         val movies = mutableListOf<Movie>()
         movies.add(
             Movie(
