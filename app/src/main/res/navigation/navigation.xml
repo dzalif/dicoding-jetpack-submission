@@ -3,17 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    app:startDestination="@id/homeFragment">
-
-    <fragment
-        android:id="@+id/homeFragment"
-        android:name="com.kucingselfie.dicodingjetpacksubmission1.ui.home.HomeFragment"
-        android:label="home_fragment"
-        tools:layout="@layout/home_fragment" >
-        <action
-            android:id="@+id/action_homeFragment_to_movieFragment"
-            app:destination="@id/movieFragment" />
-    </fragment>
+    app:startDestination="@id/movieFragment">
     <fragment
         android:id="@+id/movieFragment"
         android:name="com.kucingselfie.dicodingjetpacksubmission1.ui.movie.MovieFragment"
@@ -22,5 +12,6 @@
     <fragment
         android:id="@+id/TVShowFragment"
         android:name="com.kucingselfie.dicodingjetpacksubmission1.ui.tvshow.TVShowFragment"
-        android:label="TVShowFragment" />
+        tools:layout="@layout/tvshow_fragment"
+        android:label="TV Show" />
 </navigation>

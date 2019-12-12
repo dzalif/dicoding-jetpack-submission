@@ -5,11 +5,19 @@ import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.kucingselfie.dicodingjetpacksubmission1.model.Movie
+import com.kucingselfie.dicodingjetpacksubmission1.model.TVShow
 import com.kucingselfie.dicodingjetpacksubmission1.ui.movie.MovieAdapter
+import com.kucingselfie.dicodingjetpacksubmission1.ui.tvshow.TVShowAdapter
 
-@BindingAdapter("listData")
-fun bindRecyclerView(recyclerView: RecyclerView, data: List<Movie>?) {
+@BindingAdapter(    "listMovie")
+fun listMovie(recyclerView: RecyclerView, data: List<Movie>?) {
     val adapter = recyclerView.adapter as MovieAdapter
+    adapter.submitList(data)
+}
+
+@BindingAdapter("listTvShow")
+fun listTvShow(recyclerView: RecyclerView, data: List<TVShow>?) {
+    val adapter = recyclerView.adapter as TVShowAdapter
     adapter.submitList(data)
 }
 

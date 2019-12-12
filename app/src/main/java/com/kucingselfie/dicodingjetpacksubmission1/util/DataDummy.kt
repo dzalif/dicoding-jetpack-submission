@@ -5,10 +5,7 @@ import com.kucingselfie.dicodingjetpacksubmission1.model.Movie
 import com.kucingselfie.dicodingjetpacksubmission1.model.TVShow
 
 object DataDummy {
-    val getMovies = generateMovies()
-    val getTvShows = generateTvShows()
-
-    private fun generateTvShows(): List<TVShow> {
+    fun generateTvShows(): List<TVShow> {
         val tvShows = mutableListOf<TVShow>()
         tvShows.add(
             TVShow(
