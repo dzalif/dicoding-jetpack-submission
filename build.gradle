@@ -25,6 +25,7 @@ buildscript {
         glideVersion = '4.9.0'
         idleResourceVersion = '3.2.0'
         navigationVersion = '1.0.0'
+        mockitoTestVersion = '2.25.0'
     }
     repositories {
         google()

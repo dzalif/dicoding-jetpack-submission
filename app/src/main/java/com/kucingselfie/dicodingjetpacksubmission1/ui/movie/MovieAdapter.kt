@@ -7,12 +7,18 @@ import androidx.recyclerview.widget.RecyclerView
 import com.kucingselfie.dicodingjetpacksubmission1.databinding.ItemMovieBinding
 import com.kucingselfie.dicodingjetpacksubmission1.model.Movie
 
-class MovieAdapter :
+class MovieAdapter(private val clickListener: (Movie) -> Unit) :
     androidx.recyclerview.widget.ListAdapter<Movie, MovieAdapter.ViewHolder>(DiffCallback) {
     class ViewHolder(private var binding: ItemMovieBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(movie: Movie) {
+        fun bind(
+            movie: Movie,
+            clickListener: (Movie) -> Unit
+        ) {
             binding.model = movie
+            itemView.setOnClickListener {
+                clickListener(movie)
+            }
         }
     }
 
@@ -22,7 +28,7 @@ class MovieAdapter :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val movie = getItem(position)
-        holder.bind(movie)
+        holder.bind(movie, clickListener)
     }
 
     companion object DiffCallback : DiffUtil.ItemCallback<Movie>() {

@@ -8,10 +8,27 @@
         android:id="@+id/movieFragment"
         android:name="com.kucingselfie.dicodingjetpacksubmission1.ui.movie.MovieFragment"
         tools:layout="@layout/movie_fragment"
-        android:label="Movie" />
+        android:label="Movie" >
+        <action
+            android:id="@+id/action_movieFragment_to_detailMovieFragment"
+            app:destination="@id/detailMovieFragment" />
+    </fragment>
     <fragment
         android:id="@+id/TVShowFragment"
         android:name="com.kucingselfie.dicodingjetpacksubmission1.ui.tvshow.TVShowFragment"
         tools:layout="@layout/tvshow_fragment"
-        android:label="TV Show" />
+        android:label="TV Show" >
+        <action
+            android:id="@+id/action_TVShowFragment_to_detailMovieFragment"
+            app:destination="@id/detailMovieFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailMovieFragment"
+        android:name="com.kucingselfie.dicodingjetpacksubmission1.ui.movie.DetailMovieFragment"
+        tools:layout="@layout/detail_movie_fragment"
+        android:label="Detail">
+        <argument
+            android:name="model"
+            app:argType="com.kucingselfie.dicodingjetpacksubmission1.model.DetailModel"/>
+    </fragment>
 </navigation>

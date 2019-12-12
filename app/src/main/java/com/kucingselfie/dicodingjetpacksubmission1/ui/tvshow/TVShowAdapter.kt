@@ -5,17 +5,18 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.kucingselfie.dicodingjetpacksubmission1.databinding.ItemMovieBinding
 import com.kucingselfie.dicodingjetpacksubmission1.databinding.ItemTvshowBinding
-import com.kucingselfie.dicodingjetpacksubmission1.model.Movie
 import com.kucingselfie.dicodingjetpacksubmission1.model.TVShow
 
-class TVShowAdapter :
+class TVShowAdapter(private val clickListener: (TVShow) -> Unit) :
     ListAdapter<TVShow, TVShowAdapter.ViewHolder>(DiffCallback) {
     class ViewHolder(private var binding: ItemTvshowBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(tvshow: TVShow) {
+        fun bind(tvshow: TVShow, clickListener: (TVShow) -> Unit) {
             binding.model = tvshow
+            itemView.setOnClickListener {
+                clickListener(tvshow)
+            }
         }
     }
 
@@ -25,7 +26,7 @@ class TVShowAdapter :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val tvshow = getItem(position)
-        holder.bind(tvshow)
+        holder.bind(tvshow, clickListener)
     }
 
     companion object DiffCallback : DiffUtil.ItemCallback<TVShow>() {

@@ -1,15 +1,27 @@
 package com.kucingselfie.dicodingjetpacksubmission1.ui.tvshow
 
-import androidx.test.espresso.Espresso
+import androidx.fragment.app.testing.launchFragmentInContainer
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
+import androidx.recyclerview.widget.RecyclerView
+import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.assertion.ViewAssertions
+import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.rule.ActivityTestRule
 import com.kucingselfie.dicodingjetpacksubmission1.R
+import com.kucingselfie.dicodingjetpacksubmission1.model.DetailModel
 import com.kucingselfie.dicodingjetpacksubmission1.testing.SingleFragmentActivity
+import com.kucingselfie.dicodingjetpacksubmission1.ui.movie.MovieFragment
+import com.kucingselfie.dicodingjetpacksubmission1.ui.movie.MovieFragmentDirections
+import com.kucingselfie.dicodingjetpacksubmission1.util.DataDummy.generateMovies
 import com.kucingselfie.dicodingjetpacksubmission1.util.RecyclerViewItemCountAssertion
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
+import org.mockito.Mockito
+import org.mockito.Mockito.verify
 
 class TVShowFragmentTest {
     @Rule
@@ -24,9 +36,34 @@ class TVShowFragmentTest {
     }
 
     @Test
-    fun toShowFragment() {
-        Espresso.onView(ViewMatchers.withId(R.id.rvTvShow))
+    fun checkIsDisplayed() {
+        onView(ViewMatchers.withId(R.id.rvTvShow))
             .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
-        Espresso.onView(ViewMatchers.withId(R.id.rvTvShow)).check(RecyclerViewItemCountAssertion(10))
+        onView(ViewMatchers.withId(R.id.rvTvShow)).check(RecyclerViewItemCountAssertion(10))
+    }
+
+    @Test
+    fun toDetailTvShow() {
+        val mock = Mockito.mock(NavController::class.java)
+        val scenario = launchFragmentInContainer<TVShowFragment>()
+
+        scenario.onFragment {
+            Navigation.setViewNavController(it.requireView(), mock)
+        }
+
+        onView(ViewMatchers.withId(R.id.rvTvShow)).perform(
+            RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(0,
+                ViewActions.click()
+            ))
+
+        verify(mock).navigate(
+            TVShowFragmentDirections.actionTVShowFragmentToDetailMovieFragment(
+                DetailModel(
+                    0,
+                    "Arrow",
+                    "Spoiled billionaire playboy Oliver Queen is missing and presumed dead when his yacht is lost at sea. He returns five years later a changed man, determined to clean up the city as a hooded vigilante armed with a bow.",
+                    R.drawable.poster_arrow
+                )
+            ))
     }
 }

@@ -3,6 +3,7 @@ package com.kucingselfie.dicodingjetpacksubmission1
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
@@ -45,5 +46,10 @@ class MainActivity : AppCompatActivity() {
 
     private fun hideToolbarBack() {
         supportActionBar?.setDisplayHomeAsUpEnabled(false)
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        val navController = findNavController(R.id.navHostFragment)
+        return navController.navigateUp()
     }
 }
