@@ -19,7 +19,7 @@
             android:layout_height="match_parent"
             tools:listitem="@layout/item_movie"
             app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
-            app:listMovie="@{viewmodel.movies}"
+            app:listMovie="@{viewmodel.getMovies}"
             app:spanCount="2"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
