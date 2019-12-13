@@ -24,7 +24,7 @@
     </fragment>
     <fragment
         android:id="@+id/detailMovieFragment"
-        android:name="com.kucingselfie.dicodingjetpacksubmission1.ui.movie.DetailMovieFragment"
+        android:name="com.kucingselfie.dicodingjetpacksubmission1.ui.movie.DetailFragment"
         tools:layout="@layout/detail_movie_fragment"
         android:label="Detail">
         <argument

@@ -1,6 +1,7 @@
 package com.kucingselfie.dicodingjetpacksubmission1.ui.movie
 
 import androidx.fragment.app.testing.launchFragmentInContainer
+import androidx.lifecycle.Lifecycle
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView

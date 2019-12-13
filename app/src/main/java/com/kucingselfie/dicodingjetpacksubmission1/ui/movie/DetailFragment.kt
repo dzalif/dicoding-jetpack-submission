@@ -8,24 +8,23 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.kucingselfie.dicodingjetpacksubmission1.databinding.DetailMovieFragmentBinding
 
-class DetailMovieFragment : Fragment() {
+class DetailFragment : Fragment() {
 
-    private lateinit var viewModel: DetailMovieViewModel
+    private lateinit var viewModel: DetailViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val binding = DetailMovieFragmentBinding.inflate(inflater)
-        val model = DetailMovieFragmentArgs.fromBundle(arguments!!).model
+        val model = DetailFragmentArgs.fromBundle(arguments!!).model
         binding.model = model
-        binding.executePendingBindings()
         return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(DetailMovieViewModel::class.java)
+        viewModel = ViewModelProviders.of(this).get(DetailViewModel::class.java)
     }
 
 }

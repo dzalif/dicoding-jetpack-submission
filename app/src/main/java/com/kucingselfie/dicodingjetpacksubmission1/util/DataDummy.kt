@@ -174,6 +174,4 @@ object DataDummy {
         )
         return movies
     }
-
-
 }
