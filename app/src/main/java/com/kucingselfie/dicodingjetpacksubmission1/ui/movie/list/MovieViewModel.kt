@@ -1,4 +1,4 @@
-package com.kucingselfie.dicodingjetpacksubmission1.ui.movie
+package com.kucingselfie.dicodingjetpacksubmission1.ui.movie.list
 
 import androidx.lifecycle.ViewModel
 import com.kucingselfie.dicodingjetpacksubmission1.model.Movie

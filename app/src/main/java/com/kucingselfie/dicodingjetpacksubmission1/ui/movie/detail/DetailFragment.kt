@@ -1,4 +1,4 @@
-package com.kucingselfie.dicodingjetpacksubmission1.ui.movie
+package com.kucingselfie.dicodingjetpacksubmission1.ui.movie.detail
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.kucingselfie.dicodingjetpacksubmission1.databinding.DetailMovieFragmentBinding
+import com.kucingselfie.dicodingjetpacksubmission1.ui.movie.DetailFragmentArgs
 
 class DetailFragment : Fragment() {
 
@@ -17,7 +18,9 @@ class DetailFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val binding = DetailMovieFragmentBinding.inflate(inflater)
-        val model = DetailFragmentArgs.fromBundle(arguments!!).model
+        val model = DetailFragmentArgs.fromBundle(
+            arguments!!
+        ).model
         binding.model = model
         return binding.root
     }

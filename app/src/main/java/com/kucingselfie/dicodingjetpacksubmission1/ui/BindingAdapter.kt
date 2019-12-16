@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.kucingselfie.dicodingjetpacksubmission1.model.Movie
 import com.kucingselfie.dicodingjetpacksubmission1.model.TVShow
-import com.kucingselfie.dicodingjetpacksubmission1.ui.movie.MovieAdapter
+import com.kucingselfie.dicodingjetpacksubmission1.ui.movie.list.MovieAdapter
 import com.kucingselfie.dicodingjetpacksubmission1.ui.tvshow.TVShowAdapter
 
 @BindingAdapter(    "listMovie")

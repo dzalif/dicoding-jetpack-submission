@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="16dp"
-        tools:context="com.kucingselfie.dicodingjetpacksubmission1.ui.movie.DetailFragment">
+        tools:context="com.kucingselfie.dicodingjetpacksubmission1.ui.movie.detail.DetailFragment">
 
         <ImageView
             android:id="@+id/image"

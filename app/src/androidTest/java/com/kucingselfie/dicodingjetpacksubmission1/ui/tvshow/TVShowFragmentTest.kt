@@ -13,9 +13,6 @@ import androidx.test.rule.ActivityTestRule
 import com.kucingselfie.dicodingjetpacksubmission1.R
 import com.kucingselfie.dicodingjetpacksubmission1.model.DetailModel
 import com.kucingselfie.dicodingjetpacksubmission1.testing.SingleFragmentActivity
-import com.kucingselfie.dicodingjetpacksubmission1.ui.movie.MovieFragment
-import com.kucingselfie.dicodingjetpacksubmission1.ui.movie.MovieFragmentDirections
-import com.kucingselfie.dicodingjetpacksubmission1.util.DataDummy.generateMovies
 import com.kucingselfie.dicodingjetpacksubmission1.util.RecyclerViewItemCountAssertion
 import org.junit.Before
 import org.junit.Rule

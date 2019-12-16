@@ -5,13 +5,13 @@
     <data>
         <variable
             name="viewmodel"
-            type="com.kucingselfie.dicodingjetpacksubmission1.ui.movie.MovieViewModel" />
+            type="com.kucingselfie.dicodingjetpacksubmission1.ui.movie.list.MovieViewModel" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@android:color/white"
-        tools:context=".ui.movie.MovieFragment">
+        tools:context=".ui.movie.list.MovieFragment">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvMovie"

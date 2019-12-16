@@ -1,7 +1,6 @@
 package com.kucingselfie.dicodingjetpacksubmission1.ui.movie
 
 import androidx.fragment.app.testing.launchFragmentInContainer
-import androidx.lifecycle.Lifecycle
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
@@ -16,6 +15,7 @@ import androidx.test.rule.ActivityTestRule
 import com.kucingselfie.dicodingjetpacksubmission1.R
 import com.kucingselfie.dicodingjetpacksubmission1.model.DetailModel
 import com.kucingselfie.dicodingjetpacksubmission1.testing.SingleFragmentActivity
+import com.kucingselfie.dicodingjetpacksubmission1.ui.movie.list.MovieFragment
 import com.kucingselfie.dicodingjetpacksubmission1.util.RecyclerViewItemCountAssertion
 import org.junit.Before
 import org.junit.Rule
@@ -30,7 +30,8 @@ class MovieFragmentTest {
     @Rule
     @JvmField
     var activityRule: ActivityTestRule<SingleFragmentActivity> = ActivityTestRule(SingleFragmentActivity::class.java)
-    private val movieFragment = MovieFragment()
+    private val movieFragment =
+        MovieFragment()
 
     @Before
     fun setUp() {

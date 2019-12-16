@@ -8,7 +8,7 @@ import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.kucingselfie.dicodingjetpacksubmission1.R
 import com.kucingselfie.dicodingjetpacksubmission1.model.DetailModel
-import com.kucingselfie.dicodingjetpacksubmission1.ui.movie.DetailFragment
+import com.kucingselfie.dicodingjetpacksubmission1.ui.movie.detail.DetailFragment
 import com.kucingselfie.dicodingjetpacksubmission1.util.DataDummy.generateMovies
 import org.junit.Test
 import org.junit.runner.RunWith
