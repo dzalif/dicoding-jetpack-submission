@@ -2,34 +2,26 @@ package com.kucingselfie.jetpacksubmission.ui.tvshow
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.databinding.DataBindingComponent
+import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.kucingselfie.jetpacksubmission.AppExecutors
+import com.kucingselfie.jetpacksubmission.R
+import com.kucingselfie.jetpacksubmission.databinding.ItemMovieBinding
 import com.kucingselfie.jetpacksubmission.databinding.ItemTvshowBinding
+import com.kucingselfie.jetpacksubmission.model.Movie
 import com.kucingselfie.jetpacksubmission.model.TVShow
+import com.kucingselfie.jetpacksubmission.ui.common.DataBoundListAdapter
 
-class TVShowAdapter(private val clickListener: (TVShow) -> Unit) :
-    ListAdapter<TVShow, TVShowAdapter.ViewHolder>(DiffCallback) {
-    class ViewHolder(private var binding: ItemTvshowBinding) :
-        RecyclerView.ViewHolder(binding.root) {
-        fun bind(tvshow: TVShow, clickListener: (TVShow) -> Unit) {
-            binding.model = tvshow
-            itemView.setOnClickListener {
-                clickListener(tvshow)
-            }
-        }
-    }
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(ItemTvshowBinding.inflate(LayoutInflater.from(parent.context)))
-    }
-
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val tvshow = getItem(position)
-        holder.bind(tvshow, clickListener)
-    }
-
-    companion object DiffCallback : DiffUtil.ItemCallback<TVShow>() {
+class TVShowAdapter(
+    private val dataBindingComponent: DataBindingComponent,
+    appExecutors: AppExecutors,
+    private val clickListener: ((TVShow) -> Unit)?
+) : DataBoundListAdapter<TVShow, ItemTvshowBinding>(
+    appExecutors = appExecutors,
+    diffCallback = object : DiffUtil.ItemCallback<TVShow>() {
         override fun areItemsTheSame(oldItem: TVShow, newItem: TVShow): Boolean {
             return oldItem.id == newItem.id
         }
@@ -37,5 +29,25 @@ class TVShowAdapter(private val clickListener: (TVShow) -> Unit) :
         override fun areContentsTheSame(oldItem: TVShow, newItem: TVShow): Boolean {
             return oldItem == newItem
         }
+    }
+) {
+    override fun createBinding(parent: ViewGroup): ItemTvshowBinding {
+        val binding = DataBindingUtil.inflate<ItemTvshowBinding>(
+            LayoutInflater.from(parent.context),
+            R.layout.item_tvshow,
+            parent,
+            false,
+            dataBindingComponent
+        )
+        binding.root.setOnClickListener {
+            binding.model?.let {
+                clickListener?.invoke(it)
+            }
+        }
+        return binding
+    }
+
+    override fun bind(binding: ItemTvshowBinding, item: TVShow) {
+        binding.model = item
     }
 }

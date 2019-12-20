@@ -3,6 +3,7 @@ package com.kucingselfie.jetpacksubmission.di
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.kucingselfie.jetpacksubmission.ui.movie.list.MovieViewModel
+import com.kucingselfie.jetpacksubmission.ui.tvshow.TvshowViewModel
 import com.kucingselfie.jetpacksubmission.viewmodel.MovieViewModelFactory
 import dagger.Binds
 import dagger.Module
@@ -14,6 +15,11 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(MovieViewModel::class)
     abstract fun bindMovieViewModel(movieViewModel: MovieViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(TvshowViewModel::class)
+    abstract fun bindTvShowViewModel(movieViewModel: TvshowViewModel): ViewModel
 
     @Binds
     abstract fun bindViewModelFactory(factory: MovieViewModelFactory): ViewModelProvider.Factory
