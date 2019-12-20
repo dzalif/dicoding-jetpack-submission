@@ -3,9 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
     <data>
+        <import type="com.kucingselfie.jetpacksubmission.model.Movie" />
+        <import type="java.util.List" />
+        <import type="com.kucingselfie.jetpacksubmission.common.Result" />
+        <import type="androidx.lifecycle.LiveData"/>
         <variable
             name="viewmodel"
-            type="com.kucingselfie.dicodingjetpacksubmission1.ui.movie.list.MovieViewModel" />
+            type="com.kucingselfie.jetpacksubmission.ui.movie.list.MovieViewModel" />
+        <variable
+            name="results"
+            type="LiveData&lt;Result&lt;List&lt;Movie>>>" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -19,11 +26,24 @@
             android:layout_height="match_parent"
             tools:listitem="@layout/item_movie"
             app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
-            app:listMovie="@{viewmodel.getMovies}"
             app:spanCount="2"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <include
+            layout="@layout/loading_state"
+            app:result="@{(Result) results}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
             app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,3 +1,0 @@
-package com.kucingselfie.dicodingjetpacksubmission1.di
-
-interface Injectable

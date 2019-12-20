@@ -5,7 +5,7 @@
     <data>
         <variable
             name="model"
-            type="com.kucingselfie.dicodingjetpacksubmission1.model.TVShow" />
+            type="com.kucingselfie.jetpacksubmission.model.TVShow" />
     </data>
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
