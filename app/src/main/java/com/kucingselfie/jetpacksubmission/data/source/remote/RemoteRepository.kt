@@ -5,6 +5,7 @@ import com.kucingselfie.jetpacksubmission.api.ApiService
 import com.kucingselfie.jetpacksubmission.api.response.MovieResponse
 import com.kucingselfie.jetpacksubmission.api.response.TVShowResponse
 import com.kucingselfie.jetpacksubmission.common.Constant.API_KEY
+import com.kucingselfie.jetpacksubmission.model.DetailModel
 import com.kucingselfie.jetpacksubmission.model.Movie
 import com.kucingselfie.jetpacksubmission.model.TVShow
 import com.kucingselfie.jetpacksubmission.util.EspressoIdlingResource
@@ -55,8 +56,29 @@ class RemoteRepository @Inject constructor(val apiService: ApiService) {
                     response: Response<TVShowResponse>
                 ) {
                     if (response.isSuccessful) {
-                        response.body().let {
-                            callback.onSuccess(it!!.results)
+                        response.body()?.let {
+                            callback.onSuccess(it.results)
+                        }
+                    }
+                }
+
+            })
+        }, SERVICE_LATENCY_IN_MILLIS)
+    }
+
+    fun getDetail(id: Int, callback: LoadDetailCallback) {
+        EspressoIdlingResource.increment()
+        val handler = Handler()
+        handler.postDelayed({
+            apiService.getMovieDetail(id, API_KEY).enqueue(object : Callback<DetailModel> {
+                override fun onFailure(call: Call<DetailModel>, t: Throwable) {
+                    callback.onError(t.message)
+                }
+
+                override fun onResponse(call: Call<DetailModel>, response: Response<DetailModel>) {
+                    if (response.isSuccessful){
+                        response.body()?.let {
+                            callback.onSuccess(it)
                         }
                     }
                 }
@@ -72,6 +94,11 @@ class RemoteRepository @Inject constructor(val apiService: ApiService) {
 
     interface LoadMoviesCallback {
         fun onSuccess(response: List<Movie>)
+        fun onError(message: String?)
+    }
+
+    interface LoadDetailCallback {
+        fun onSuccess(response: DetailModel)
         fun onError(message: String?)
     }
 

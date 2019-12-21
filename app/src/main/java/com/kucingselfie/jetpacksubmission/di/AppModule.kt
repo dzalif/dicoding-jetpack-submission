@@ -10,13 +10,10 @@ import javax.inject.Singleton
 
 @Module(includes = [ViewModelModule::class])
 class AppModule {
-    @Singleton
     @Provides
-    fun provideApiService(): ApiService {
-        return Retrofit.Builder()
-            .baseUrl(BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
+    @Singleton
+    fun provideApiService() : ApiService {
+        return Retrofit.Builder().baseUrl(BASE_URL).addConverterFactory(GsonConverterFactory.create()).build()
             .create(ApiService::class.java)
     }
 }

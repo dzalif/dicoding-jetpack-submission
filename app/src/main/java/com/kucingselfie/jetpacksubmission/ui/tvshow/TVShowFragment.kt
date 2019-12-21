@@ -16,6 +16,7 @@ import com.kucingselfie.jetpacksubmission.R
 import com.kucingselfie.jetpacksubmission.binding.FragmentDataBindingComponent
 import com.kucingselfie.jetpacksubmission.databinding.TvshowFragmentBinding
 import com.kucingselfie.jetpacksubmission.di.Injectable
+import com.kucingselfie.jetpacksubmission.ui.movie.list.MovieFragmentDirections
 import com.kucingselfie.jetpacksubmission.util.autoCleared
 import javax.inject.Inject
 
@@ -49,14 +50,8 @@ class TVShowFragment : Fragment(), Injectable {
             dataBindingComponent = dataBindingComponent,
             appExecutors = appExecutors
         ) {
-//            val model = DetailModel(
-//                it.id,
-//                it.title,
-//                it.overview,
-//                it.posterPath
-//            )
-//            navController().navigate(
-//                MovieFragmentDirections.actionMovieFragmentToDetailMovieFragment(model))
+            navController().navigate(
+                MovieFragmentDirections.actionMovieFragmentToDetailMovieFragment(it.id))
         }
 
         binding.results = viewModel.tvShows
@@ -68,10 +63,10 @@ class TVShowFragment : Fragment(), Injectable {
 
         binding.rvTvShow.adapter = rvAdapter
         adapter = rvAdapter
-
-        /**
-         * Created to be able to override in tests
-         */
-        fun navController() = findNavController()
     }
+
+    /**
+     * Created to be able to override in tests
+     */
+    fun navController() = findNavController()
 }

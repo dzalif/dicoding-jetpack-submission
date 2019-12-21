@@ -12,10 +12,10 @@ import dagger.android.support.AndroidSupportInjection
 import dagger.android.support.HasSupportFragmentInjector
 
 object AppInjector {
-    fun init(githubApp: MovieApp) {
-        DaggerAppComponent.builder().application(githubApp)
-            .build().inject(githubApp)
-        githubApp
+    fun init(movieApp: MovieApp) {
+        DaggerAppComponent.builder().application(movieApp)
+            .build().inject(movieApp)
+        movieApp
             .registerActivityLifecycleCallbacks(object : Application.ActivityLifecycleCallbacks {
                 override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
                     handleActivity(activity)

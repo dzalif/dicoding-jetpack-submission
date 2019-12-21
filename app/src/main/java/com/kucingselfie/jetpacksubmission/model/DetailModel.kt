@@ -1,12 +1,12 @@
 package com.kucingselfie.jetpacksubmission.model
 
-import android.os.Parcelable
-import kotlinx.android.parcel.Parcelize
+import com.google.gson.annotations.SerializedName
 
-@Parcelize
 data class DetailModel(
     val id: Int,
     val title: String,
+    @SerializedName("overview")
     val description: String,
+    @SerializedName("poster_path")
     val image: String
-) : Parcelable
+)
