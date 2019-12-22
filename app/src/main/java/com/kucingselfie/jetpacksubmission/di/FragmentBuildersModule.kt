@@ -1,8 +1,9 @@
 package com.kucingselfie.jetpacksubmission.di
 
-import com.kucingselfie.jetpacksubmission.ui.movie.detail.DetailFragment
+import com.kucingselfie.jetpacksubmission.ui.movie.detail.DetailMovieFragment
 import com.kucingselfie.jetpacksubmission.ui.movie.list.MovieFragment
-import com.kucingselfie.jetpacksubmission.ui.tvshow.TVShowFragment
+import com.kucingselfie.jetpacksubmission.ui.tvshow.detail.DetailTvShowFragment
+import com.kucingselfie.jetpacksubmission.ui.tvshow.list.TVShowFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -15,6 +16,9 @@ abstract class FragmentBuildersModule {
     abstract fun contributeTvShowFragment(): TVShowFragment
 
     @ContributesAndroidInjector
-    abstract fun contributeDetailFragment(): DetailFragment
+    abstract fun contributeDetailFragment(): DetailMovieFragment
+
+    @ContributesAndroidInjector
+    abstract fun contributeDetailTvShowFragment(): DetailTvShowFragment
 
 }

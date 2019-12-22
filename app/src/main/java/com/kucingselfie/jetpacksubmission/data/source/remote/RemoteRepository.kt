@@ -6,6 +6,7 @@ import com.kucingselfie.jetpacksubmission.api.response.MovieResponse
 import com.kucingselfie.jetpacksubmission.api.response.TVShowResponse
 import com.kucingselfie.jetpacksubmission.common.Constant.API_KEY
 import com.kucingselfie.jetpacksubmission.model.DetailModel
+import com.kucingselfie.jetpacksubmission.model.DetailTvShowModel
 import com.kucingselfie.jetpacksubmission.model.Movie
 import com.kucingselfie.jetpacksubmission.model.TVShow
 import com.kucingselfie.jetpacksubmission.util.EspressoIdlingResource
@@ -82,7 +83,26 @@ class RemoteRepository @Inject constructor(val apiService: ApiService) {
                         }
                     }
                 }
+            })
+        }, SERVICE_LATENCY_IN_MILLIS)
+    }
 
+    fun getDetailTvShow(id: Int, callback: LoadDetailTvShowCallback) {
+        EspressoIdlingResource.increment()
+        val handler = Handler()
+        handler.postDelayed({
+            apiService.getTvDetail(id, API_KEY).enqueue(object : Callback<DetailTvShowModel> {
+                override fun onFailure(call: Call<DetailTvShowModel>, t: Throwable) {
+                    callback.onError(t.message)
+                }
+
+                override fun onResponse(call: Call<DetailTvShowModel>, response: Response<DetailTvShowModel>) {
+                    if (response.isSuccessful){
+                        response.body()?.let {
+                            callback.onSuccess(it)
+                        }
+                    }
+                }
             })
         }, SERVICE_LATENCY_IN_MILLIS)
     }
@@ -99,6 +119,11 @@ class RemoteRepository @Inject constructor(val apiService: ApiService) {
 
     interface LoadDetailCallback {
         fun onSuccess(response: DetailModel)
+        fun onError(message: String?)
+    }
+
+    interface LoadDetailTvShowCallback {
+        fun onSuccess(response: DetailTvShowModel)
         fun onError(message: String?)
     }
 

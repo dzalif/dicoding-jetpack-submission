@@ -11,7 +11,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class DetailViewModel @Inject constructor(repository: MovieRepository) : ViewModel() {
+class DetailMovieViewModel @Inject constructor(repository: MovieRepository) : ViewModel() {
     private val _movieId = MutableLiveData<Int>()
     val movieId: LiveData<Int> get() = _movieId
 

@@ -1,4 +1,4 @@
-package com.kucingselfie.jetpacksubmission.ui.tvshow
+package com.kucingselfie.jetpacksubmission.ui.tvshow.list
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel

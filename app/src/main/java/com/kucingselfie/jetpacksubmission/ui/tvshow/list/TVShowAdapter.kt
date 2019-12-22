@@ -1,17 +1,13 @@
-package com.kucingselfie.jetpacksubmission.ui.tvshow
+package com.kucingselfie.jetpacksubmission.ui.tvshow.list
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingComponent
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
-import androidx.recyclerview.widget.RecyclerView
 import com.kucingselfie.jetpacksubmission.AppExecutors
 import com.kucingselfie.jetpacksubmission.R
-import com.kucingselfie.jetpacksubmission.databinding.ItemMovieBinding
 import com.kucingselfie.jetpacksubmission.databinding.ItemTvshowBinding
-import com.kucingselfie.jetpacksubmission.model.Movie
 import com.kucingselfie.jetpacksubmission.model.TVShow
 import com.kucingselfie.jetpacksubmission.ui.common.DataBoundListAdapter
 

@@ -1,5 +1,6 @@
 package com.kucingselfie.jetpacksubmission.ui.tvshow
 
+import com.kucingselfie.jetpacksubmission.ui.tvshow.list.TvshowViewModel
 import junit.framework.Assert.assertEquals
 import junit.framework.Assert.assertNotNull
 import org.junit.Before

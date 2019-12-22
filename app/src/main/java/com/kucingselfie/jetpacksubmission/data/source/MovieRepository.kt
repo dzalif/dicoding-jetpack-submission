@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import com.kucingselfie.jetpacksubmission.common.Result
 import com.kucingselfie.jetpacksubmission.data.source.remote.RemoteRepository
 import com.kucingselfie.jetpacksubmission.model.DetailModel
+import com.kucingselfie.jetpacksubmission.model.DetailTvShowModel
 import com.kucingselfie.jetpacksubmission.model.Movie
 import com.kucingselfie.jetpacksubmission.model.TVShow
 import javax.inject.Inject
@@ -14,24 +15,6 @@ import javax.inject.Singleton
 class MovieRepository @Inject constructor(
     private val remoteRepository: RemoteRepository
 ) : MovieDataSource {
-    override fun getDetail(it: Int): LiveData<Result<DetailModel>> {
-        val details = MutableLiveData<Result<DetailModel>>()
-        details.postValue(Result.Loading(null))
-        remoteRepository.getDetail(it, object : RemoteRepository.LoadDetailCallback {
-            override fun onSuccess(response: DetailModel) {
-                details.postValue(Result.Success(response))
-            }
-
-            override fun onError(message: String?) {
-                message?.let {
-                    details.postValue(Result.Error(message, null))
-                }
-            }
-
-        })
-        return details
-    }
-
     override fun getTvShows(): LiveData<Result<List<TVShow>>> {
         val tvShows = MutableLiveData<Result<List<TVShow>>>()
         tvShows.postValue(Result.Loading(null))
@@ -62,6 +45,41 @@ class MovieRepository @Inject constructor(
             }
         })
         return movies
+    }
+
+    override fun getDetail(id: Int): LiveData<Result<DetailModel>> {
+        val details = MutableLiveData<Result<DetailModel>>()
+        details.postValue(Result.Loading(null))
+        remoteRepository.getDetail(id, object : RemoteRepository.LoadDetailCallback {
+            override fun onSuccess(response: DetailModel) {
+                details.postValue(Result.Success(response))
+            }
+
+            override fun onError(message: String?) {
+                message?.let {
+                    details.postValue(Result.Error(message, null))
+                }
+            }
+
+        })
+        return details
+    }
+
+    override fun getDetailTvShow(id: Int): LiveData<Result<DetailTvShowModel>> {
+        val details = MutableLiveData<Result<DetailTvShowModel>>()
+        details.postValue(Result.Loading(null))
+        remoteRepository.getDetailTvShow(id, object : RemoteRepository.LoadDetailTvShowCallback {
+            override fun onSuccess(response: DetailTvShowModel) {
+                details.postValue(Result.Success(response))
+            }
+
+            override fun onError(message: String?) {
+                message?.let {
+                    details.postValue(Result.Error(message, null))
+                }
+            }
+        })
+        return details
     }
 }
 
