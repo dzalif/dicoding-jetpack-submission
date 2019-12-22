@@ -16,7 +16,7 @@ import com.kucingselfie.jetpacksubmission.R
 import com.kucingselfie.jetpacksubmission.binding.FragmentDataBindingComponent
 import com.kucingselfie.jetpacksubmission.databinding.TvshowFragmentBinding
 import com.kucingselfie.jetpacksubmission.di.Injectable
-import com.kucingselfie.jetpacksubmission.ui.movie.list.MovieFragmentDirections
+import com.kucingselfie.jetpacksubmission.ui.home.HomeFragmentDirections
 import com.kucingselfie.jetpacksubmission.util.autoCleared
 import javax.inject.Inject
 
@@ -51,7 +51,7 @@ class TVShowFragment : Fragment(), Injectable {
             appExecutors = appExecutors
         ) {
             navController().navigate(
-                TVShowFragmentDirections.actionTVShowFragmentToDetailTvShowFragment(it.id)
+                HomeFragmentDirections.actionHomeFragmentToDetailTvShowFragment(it.id)
             )
         }
 

@@ -16,6 +16,7 @@ import com.kucingselfie.jetpacksubmission.R
 import com.kucingselfie.jetpacksubmission.binding.FragmentDataBindingComponent
 import com.kucingselfie.jetpacksubmission.databinding.MovieFragmentBinding
 import com.kucingselfie.jetpacksubmission.di.Injectable
+import com.kucingselfie.jetpacksubmission.ui.home.HomeFragmentDirections
 import com.kucingselfie.jetpacksubmission.util.autoCleared
 import javax.inject.Inject
 
@@ -50,7 +51,7 @@ class MovieFragment : Fragment(), Injectable {
             appExecutors = appExecutors
         ) {
             navController().navigate(
-                MovieFragmentDirections.actionMovieFragmentToDetailMovieFragment(it.id))
+                HomeFragmentDirections.actionHomeFragmentToDetailFragment(it.id))
         }
         binding.results = viewModel.movies
         viewModel.movies.observe(viewLifecycleOwner, Observer {

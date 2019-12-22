@@ -27,29 +27,7 @@ class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
         navController = navHostFragment.findNavController()
         toolbar = findViewById(R.id.mainToolbar)
         setSupportActionBar(toolbar)
-        setupActionBarWithNavController(navController)
-
-        initBottomNav()
     }
-
-    private fun initBottomNav() {
-        bottomNavigationView.setupWithNavController(navController)
-        navController.addOnDestinationChangedListener(navigationListener)
-    }
-
-    private val navigationListener =
-        NavController.OnDestinationChangedListener { _, destination, _ ->
-            invalidateOptionsMenu()
-            when(destination.id) {
-                R.id.movieFragment -> {
-                    hideToolbarBack()
-                }
-                R.id.TVShowFragment -> {
-                    hideToolbarBack()
-                }
-            }
-        }
-
     private fun hideToolbarBack() {
         supportActionBar?.setDisplayHomeAsUpEnabled(false)
     }
