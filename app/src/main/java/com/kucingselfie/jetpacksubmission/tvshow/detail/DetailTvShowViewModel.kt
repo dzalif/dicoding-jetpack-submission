@@ -1,4 +1,4 @@
-package com.kucingselfie.jetpacksubmission.ui.tvshow.detail
+package com.kucingselfie.jetpacksubmission.tvshow.detail
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -6,7 +6,6 @@ import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import com.kucingselfie.jetpacksubmission.common.Result
 import com.kucingselfie.jetpacksubmission.data.source.MovieRepository
-import com.kucingselfie.jetpacksubmission.model.DetailModel
 import com.kucingselfie.jetpacksubmission.model.DetailTvShowModel
 import javax.inject.Inject
 

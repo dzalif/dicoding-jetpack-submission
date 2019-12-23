@@ -1,4 +1,4 @@
-package com.kucingselfie.jetpacksubmission.ui.tvshow
+package com.kucingselfie.jetpacksubmission.tvshow
 
 import androidx.fragment.app.testing.launchFragmentInContainer
 import androidx.navigation.NavController
@@ -13,7 +13,7 @@ import androidx.test.rule.ActivityTestRule
 import com.kucingselfie.jetpacksubmission.R
 import com.kucingselfie.jetpacksubmission.model.DetailModel
 import com.kucingselfie.jetpacksubmission.testing.SingleFragmentActivity
-import com.kucingselfie.jetpacksubmission.ui.tvshow.list.TVShowFragment
+import com.kucingselfie.jetpacksubmission.tvshow.list.TVShowFragment
 import com.kucingselfie.jetpacksubmission.util.RecyclerViewItemCountAssertion
 import org.junit.Before
 import org.junit.Rule

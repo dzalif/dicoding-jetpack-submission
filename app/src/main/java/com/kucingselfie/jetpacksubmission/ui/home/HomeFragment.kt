@@ -12,8 +12,8 @@ import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
 import com.kucingselfie.jetpacksubmission.R
 import com.kucingselfie.jetpacksubmission.databinding.HomeFragmentBinding
-import com.kucingselfie.jetpacksubmission.ui.movie.list.MovieFragment
-import com.kucingselfie.jetpacksubmission.ui.tvshow.list.TVShowFragment
+import com.kucingselfie.jetpacksubmission.movie.list.MovieFragment
+import com.kucingselfie.jetpacksubmission.tvshow.list.TVShowFragment
 
 class HomeFragment : Fragment() {
 

@@ -1,4 +1,4 @@
-package com.kucingselfie.jetpacksubmission.ui.tvshow.list
+package com.kucingselfie.jetpacksubmission.movie.list
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -14,13 +14,13 @@ import androidx.navigation.fragment.findNavController
 import com.kucingselfie.jetpacksubmission.AppExecutors
 import com.kucingselfie.jetpacksubmission.R
 import com.kucingselfie.jetpacksubmission.binding.FragmentDataBindingComponent
-import com.kucingselfie.jetpacksubmission.databinding.TvshowFragmentBinding
+import com.kucingselfie.jetpacksubmission.databinding.MovieFragmentBinding
 import com.kucingselfie.jetpacksubmission.di.Injectable
 import com.kucingselfie.jetpacksubmission.ui.home.HomeFragmentDirections
 import com.kucingselfie.jetpacksubmission.util.autoCleared
 import javax.inject.Inject
 
-class TVShowFragment : Fragment(), Injectable {
+class MovieFragment : Fragment(), Injectable {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
@@ -30,41 +30,43 @@ class TVShowFragment : Fragment(), Injectable {
 
     // mutable for testing
     private var dataBindingComponent: DataBindingComponent = FragmentDataBindingComponent(this)
-    var binding by autoCleared<TvshowFragmentBinding>()
-    private var adapter by autoCleared<TVShowAdapter>()
-    private val viewModel: TvshowViewModel by viewModels { viewModelFactory }
+    var binding by autoCleared<MovieFragmentBinding>()
+    private var adapter by autoCleared<MovieAdapter>()
+    private val viewModel: MovieViewModel by viewModels { viewModelFactory }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = DataBindingUtil.inflate(
-            inflater, R.layout.tvshow_fragment, container, false, dataBindingComponent
+            inflater, R.layout.movie_fragment, container, false, dataBindingComponent
         )
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding.lifecycleOwner = viewLifecycleOwner
-        val rvAdapter = TVShowAdapter(
+        val rvAdapter = MovieAdapter(
             dataBindingComponent = dataBindingComponent,
             appExecutors = appExecutors
         ) {
             navController().navigate(
-                HomeFragmentDirections.actionHomeFragmentToDetailTvShowFragment(it.id)
-            )
+                HomeFragmentDirections.actionHomeFragmentToDetailFragment(it.id))
         }
-
-        binding.results = viewModel.tvShows
-        viewModel.tvShows.observe(viewLifecycleOwner, Observer {
+        binding.results = viewModel.movies
+        viewModel.movies.observe(viewLifecycleOwner, Observer {
             it?.let {
                 adapter.submitList(it.data)
             }
         })
 
-        binding.rvTvShow.adapter = rvAdapter
+        binding.rvMovie.adapter = rvAdapter
         adapter = rvAdapter
     }
 
+    /**
+     * Created to be able to override in tests
+     */
     fun navController() = findNavController()
+
 }

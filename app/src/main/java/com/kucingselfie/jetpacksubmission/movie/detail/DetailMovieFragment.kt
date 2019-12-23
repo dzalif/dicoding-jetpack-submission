@@ -1,4 +1,4 @@
-package com.kucingselfie.jetpacksubmission.ui.tvshow.detail
+package com.kucingselfie.jetpacksubmission.movie.detail
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -14,15 +14,14 @@ import com.kucingselfie.jetpacksubmission.AppExecutors
 import com.kucingselfie.jetpacksubmission.R
 import com.kucingselfie.jetpacksubmission.binding.FragmentDataBindingComponent
 import com.kucingselfie.jetpacksubmission.common.Result
-import com.kucingselfie.jetpacksubmission.databinding.DetailTvShowFragmentBinding
+import com.kucingselfie.jetpacksubmission.databinding.DetailMovieFragmentBinding
 import com.kucingselfie.jetpacksubmission.di.Injectable
-import com.kucingselfie.jetpacksubmission.ui.movie.detail.DetailMovieFragmentArgs
 import com.kucingselfie.jetpacksubmission.util.autoCleared
 import com.kucingselfie.jetpacksubmission.util.gone
 import com.kucingselfie.jetpacksubmission.util.visible
 import javax.inject.Inject
 
-class DetailTvShowFragment : Fragment(), Injectable {
+class DetailMovieFragment : Fragment(), Injectable {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
@@ -32,26 +31,25 @@ class DetailTvShowFragment : Fragment(), Injectable {
 
     // mutable for testing
     private var dataBindingComponent: DataBindingComponent = FragmentDataBindingComponent(this)
-    var binding by autoCleared<DetailTvShowFragmentBinding>()
+    var binding by autoCleared<DetailMovieFragmentBinding>()
 
-    private val viewModel: DetailTvShowViewModel by viewModels { viewModelFactory }
+    private val viewModel: DetailMovieViewModel by viewModels { viewModelFactory }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = DataBindingUtil.inflate(
-            inflater, R.layout.detail_tv_show_fragment, container, false, dataBindingComponent
+            inflater, R.layout.detail_movie_fragment, container, false, dataBindingComponent
         )
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
         binding.lifecycleOwner = viewLifecycleOwner
-        val tvShowId = arguments?.let { DetailTvShowFragmentArgs.fromBundle(it).tvId }
-        tvShowId?.let { viewModel.setTvShowId(it) }
-        binding.tvShowId = viewModel.tvShowId
+        val movieId = arguments?.let { DetailMovieFragmentArgs.fromBundle(it).dataId }
+        movieId?.let { viewModel.setMovieId(it) }
+        binding.movieId = viewModel.movieId
         binding.results = viewModel.results
         viewModel.results.observe(this, Observer {
             it?.let {
@@ -67,5 +65,6 @@ class DetailTvShowFragment : Fragment(), Injectable {
             }
         })
     }
-
 }
+
+

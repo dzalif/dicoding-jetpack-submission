@@ -22,7 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="16dp"
-        tools:context="com.kucingselfie.jetpacksubmission.ui.tvshow.detail.DetailTvShowFragment">
+        tools:context="com.kucingselfie.jetpacksubmission.tvshow.detail.DetailTvShowFragment">
 
         <ImageView
             android:id="@+id/imageView"

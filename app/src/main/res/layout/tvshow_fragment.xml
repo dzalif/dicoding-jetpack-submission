@@ -9,7 +9,7 @@
         <import type="androidx.lifecycle.LiveData"/>
         <variable
             name="viewmodel"
-            type="com.kucingselfie.jetpacksubmission.ui.tvshow.list.TvshowViewModel" />
+            type="com.kucingselfie.jetpacksubmission.tvshow.list.TvShowViewModel" />
         <variable
             name="results"
             type="LiveData&lt;Result&lt;List&lt;TVShow>>>" />
@@ -18,7 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@android:color/white"
-        tools:context=".ui.tvshow.list.TVShowFragment">
+        tools:context=".tvshow.list.TVShowFragment">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvTvShow"

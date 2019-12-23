@@ -9,7 +9,7 @@
         <import type="androidx.lifecycle.LiveData"/>
         <variable
             name="viewmodel"
-            type="com.kucingselfie.jetpacksubmission.ui.movie.list.MovieViewModel" />
+            type="com.kucingselfie.jetpacksubmission.movie.list.MovieViewModel" />
         <variable
             name="results"
             type="LiveData&lt;Result&lt;List&lt;Movie>>>" />
@@ -18,7 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@android:color/white"
-        tools:context=".ui.movie.list.MovieFragment">
+        tools:context="com.kucingselfie.jetpacksubmission.movie.list.MovieFragment">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvMovie"

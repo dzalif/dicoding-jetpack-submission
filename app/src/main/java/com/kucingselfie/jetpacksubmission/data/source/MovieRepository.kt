@@ -12,7 +12,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class MovieRepository @Inject constructor(
+open class MovieRepository @Inject constructor(
     private val remoteRepository: RemoteRepository
 ) : MovieDataSource {
     override fun getTvShows(): LiveData<Result<List<TVShow>>> {

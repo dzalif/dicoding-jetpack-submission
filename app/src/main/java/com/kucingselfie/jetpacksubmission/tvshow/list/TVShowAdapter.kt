@@ -1,4 +1,4 @@
-package com.kucingselfie.jetpacksubmission.ui.movie.list
+package com.kucingselfie.jetpacksubmission.tvshow.list
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,30 +7,30 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DiffUtil
 import com.kucingselfie.jetpacksubmission.AppExecutors
 import com.kucingselfie.jetpacksubmission.R
-import com.kucingselfie.jetpacksubmission.databinding.ItemMovieBinding
-import com.kucingselfie.jetpacksubmission.model.Movie
+import com.kucingselfie.jetpacksubmission.databinding.ItemTvshowBinding
+import com.kucingselfie.jetpacksubmission.model.TVShow
 import com.kucingselfie.jetpacksubmission.ui.common.DataBoundListAdapter
 
-class MovieAdapter(
+class TVShowAdapter(
     private val dataBindingComponent: DataBindingComponent,
     appExecutors: AppExecutors,
-    private val clickListener: ((Movie) -> Unit)?
-) : DataBoundListAdapter<Movie, ItemMovieBinding>(
+    private val clickListener: ((TVShow) -> Unit)?
+) : DataBoundListAdapter<TVShow, ItemTvshowBinding>(
     appExecutors = appExecutors,
-    diffCallback = object : DiffUtil.ItemCallback<Movie>() {
-        override fun areItemsTheSame(oldItem: Movie, newItem: Movie): Boolean {
+    diffCallback = object : DiffUtil.ItemCallback<TVShow>() {
+        override fun areItemsTheSame(oldItem: TVShow, newItem: TVShow): Boolean {
             return oldItem.id == newItem.id
         }
 
-        override fun areContentsTheSame(oldItem: Movie, newItem: Movie): Boolean {
+        override fun areContentsTheSame(oldItem: TVShow, newItem: TVShow): Boolean {
             return oldItem == newItem
         }
     }
 ) {
-    override fun createBinding(parent: ViewGroup): ItemMovieBinding {
-        val binding = DataBindingUtil.inflate<ItemMovieBinding>(
+    override fun createBinding(parent: ViewGroup): ItemTvshowBinding {
+        val binding = DataBindingUtil.inflate<ItemTvshowBinding>(
             LayoutInflater.from(parent.context),
-            R.layout.item_movie,
+            R.layout.item_tvshow,
             parent,
             false,
             dataBindingComponent
@@ -43,7 +43,7 @@ class MovieAdapter(
         return binding
     }
 
-    override fun bind(binding: ItemMovieBinding, item: Movie) {
+    override fun bind(binding: ItemTvshowBinding, item: TVShow) {
         binding.model = item
     }
 }

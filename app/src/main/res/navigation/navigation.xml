@@ -6,7 +6,7 @@
     app:startDestination="@id/homeFragment">
     <fragment
         android:id="@+id/movieFragment"
-        android:name="com.kucingselfie.jetpacksubmission.ui.movie.list.MovieFragment"
+        android:name="com.kucingselfie.jetpacksubmission.movie.list.MovieFragment"
         tools:layout="@layout/movie_fragment"
         android:label="Movie" >
         <action
@@ -15,7 +15,7 @@
     </fragment>
     <fragment
         android:id="@+id/TVShowFragment"
-        android:name="com.kucingselfie.jetpacksubmission.ui.tvshow.list.TVShowFragment"
+        android:name="com.kucingselfie.jetpacksubmission.tvshow.list.TVShowFragment"
         tools:layout="@layout/tvshow_fragment"
         android:label="TV Show" >
         <action
@@ -24,7 +24,7 @@
     </fragment>
     <fragment
         android:id="@+id/detailFragment"
-        android:name="com.kucingselfie.jetpacksubmission.ui.movie.detail.DetailMovieFragment"
+        android:name="com.kucingselfie.jetpacksubmission.movie.detail.DetailMovieFragment"
         tools:layout="@layout/detail_movie_fragment"
         android:label="Movie">
         <argument
@@ -33,7 +33,7 @@
     </fragment>
     <fragment
         android:id="@+id/detailTvShowFragment"
-        android:name="com.kucingselfie.jetpacksubmission.ui.tvshow.detail.DetailTvShowFragment"
+        android:name="com.kucingselfie.jetpacksubmission.tvshow.detail.DetailTvShowFragment"
         tools:layout="@layout/detail_tv_show_fragment"
         android:label="TV Show">
         <argument

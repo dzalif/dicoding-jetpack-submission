@@ -6,8 +6,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.kucingselfie.jetpacksubmission.model.Movie
 import com.kucingselfie.jetpacksubmission.model.TVShow
-import com.kucingselfie.jetpacksubmission.ui.movie.list.MovieAdapter
-import com.kucingselfie.jetpacksubmission.ui.tvshow.list.TVShowAdapter
+import com.kucingselfie.jetpacksubmission.movie.list.MovieAdapter
+import com.kucingselfie.jetpacksubmission.tvshow.list.TVShowAdapter
 
 @BindingAdapter(    "listMovie")
 fun listMovie(recyclerView: RecyclerView, data: List<Movie>?) {

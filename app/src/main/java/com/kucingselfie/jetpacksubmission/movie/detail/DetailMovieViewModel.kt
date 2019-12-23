@@ -1,4 +1,4 @@
-package com.kucingselfie.jetpacksubmission.ui.movie.detail
+package com.kucingselfie.jetpacksubmission.movie.detail
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
