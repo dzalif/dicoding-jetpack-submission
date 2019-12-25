@@ -16,10 +16,12 @@ import com.kucingselfie.jetpacksubmission.R
 import com.kucingselfie.jetpacksubmission.binding.FragmentDataBindingComponent
 import com.kucingselfie.jetpacksubmission.databinding.TvshowFragmentBinding
 import com.kucingselfie.jetpacksubmission.di.Injectable
+import com.kucingselfie.jetpacksubmission.testing.OpenForTesting
 import com.kucingselfie.jetpacksubmission.ui.home.HomeFragmentDirections
 import com.kucingselfie.jetpacksubmission.util.autoCleared
 import javax.inject.Inject
 
+@OpenForTesting
 class TVShowFragment : Fragment(), Injectable {
 
     @Inject
@@ -29,7 +31,7 @@ class TVShowFragment : Fragment(), Injectable {
     lateinit var appExecutors: AppExecutors
 
     // mutable for testing
-    private var dataBindingComponent: DataBindingComponent = FragmentDataBindingComponent(this)
+    var dataBindingComponent: DataBindingComponent = FragmentDataBindingComponent(this)
     var binding by autoCleared<TvshowFragmentBinding>()
     private var adapter by autoCleared<TVShowAdapter>()
     private val viewModel: TvShowViewModel by viewModels { viewModelFactory }
@@ -38,10 +40,11 @@ class TVShowFragment : Fragment(), Injectable {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = DataBindingUtil.inflate(
+        val dataBinding = DataBindingUtil.inflate<TvshowFragmentBinding>(
             inflater, R.layout.tvshow_fragment, container, false, dataBindingComponent
         )
-        return binding.root
+        binding = dataBinding
+        return dataBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

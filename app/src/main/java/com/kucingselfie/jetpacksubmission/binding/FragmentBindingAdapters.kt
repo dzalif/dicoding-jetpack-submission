@@ -7,9 +7,10 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.kucingselfie.jetpacksubmission.R
 import com.kucingselfie.jetpacksubmission.common.Constant.BASE_URL_IMAGE
+import com.kucingselfie.jetpacksubmission.testing.OpenForTesting
 import javax.inject.Inject
 
-//TODO: Add @open for testing
+@OpenForTesting
 class FragmentBindingAdapters @Inject constructor(val fragment: Fragment) {
     @BindingAdapter("imageUrl")
     fun bindImage(imgView: ImageView, imgUrl: String?) {

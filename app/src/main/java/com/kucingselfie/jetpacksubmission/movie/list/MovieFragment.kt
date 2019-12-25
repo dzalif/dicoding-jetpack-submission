@@ -16,10 +16,12 @@ import com.kucingselfie.jetpacksubmission.R
 import com.kucingselfie.jetpacksubmission.binding.FragmentDataBindingComponent
 import com.kucingselfie.jetpacksubmission.databinding.MovieFragmentBinding
 import com.kucingselfie.jetpacksubmission.di.Injectable
+import com.kucingselfie.jetpacksubmission.testing.OpenForTesting
 import com.kucingselfie.jetpacksubmission.ui.home.HomeFragmentDirections
 import com.kucingselfie.jetpacksubmission.util.autoCleared
 import javax.inject.Inject
 
+@OpenForTesting
 class MovieFragment : Fragment(), Injectable {
 
     @Inject
@@ -67,6 +69,6 @@ class MovieFragment : Fragment(), Injectable {
     /**
      * Created to be able to override in tests
      */
-    fun navController() = findNavController()
+    open fun navController() = findNavController()
 
 }

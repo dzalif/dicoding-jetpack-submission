@@ -2,7 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.kucingselfie.jetpacksubmission">
     <uses-permission android:name="android.permission.INTERNET" />
-    <application tools:ignore="GoogleAppIndexingWarning">
+    <application
+        tools:ignore="GoogleAppIndexingWarning">
         <activity android:name=".testing.SingleFragmentActivity" />
     </application>
 </manifest>

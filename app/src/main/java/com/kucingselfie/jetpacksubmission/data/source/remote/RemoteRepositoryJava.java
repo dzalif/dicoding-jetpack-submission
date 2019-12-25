@@ -3,22 +3,18 @@ package com.kucingselfie.jetpacksubmission.data.source.remote;
 import android.os.Handler;
 
 import com.kucingselfie.jetpacksubmission.api.ApiClient;
-import com.kucingselfie.jetpacksubmission.api.ApiService;
 import com.kucingselfie.jetpacksubmission.api.response.MovieResponse;
 import com.kucingselfie.jetpacksubmission.api.response.TVShowResponse;
 import com.kucingselfie.jetpacksubmission.model.DetailModel;
 import com.kucingselfie.jetpacksubmission.model.DetailTvShowModel;
 import com.kucingselfie.jetpacksubmission.model.Movie;
 import com.kucingselfie.jetpacksubmission.model.TVShow;
-import com.kucingselfie.jetpacksubmission.util.EspressoIdlingResource;
 import com.kucingselfie.jetpacksubmission.util.EspressoIdlingResourceJava;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
-import java.util.Objects;
 
-import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import retrofit2.Call;
@@ -29,7 +25,6 @@ import static com.kucingselfie.jetpacksubmission.common.Constant.API_KEY;
 
 @Singleton
 public class RemoteRepositoryJava {
-    private static RemoteRepositoryJava INSTANCE;
     private final long SERVICE_LATENCY_IN_MILLIS = 2000;
 
     private ApiClient apiClient;
@@ -37,13 +32,6 @@ public class RemoteRepositoryJava {
 
     public RemoteRepositoryJava(ApiClient apiClient) {
         this.apiClient = apiClient;
-    }
-
-    public static RemoteRepositoryJava getInstance(ApiClient apiClient) {
-        if (INSTANCE == null) {
-            INSTANCE = new RemoteRepositoryJava(apiClient);
-        }
-        return INSTANCE;
     }
 
     public void getMovies(final LoadMoviesCallback callback) {
