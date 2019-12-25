@@ -8,11 +8,10 @@ import com.kucingselfie.jetpacksubmission.model.DetailModel
 import com.kucingselfie.jetpacksubmission.model.DetailTvShowModel
 import com.kucingselfie.jetpacksubmission.model.Movie
 import com.kucingselfie.jetpacksubmission.model.TVShow
-import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-open class MovieRepository @Inject constructor(
+open class FakeMovieRepository(
     private val remoteRepository: RemoteRepositoryJava
 ) : MovieDataSource {
     override fun getTvShows(): LiveData<Result<List<TVShow>>> {
@@ -80,23 +79,6 @@ open class MovieRepository @Inject constructor(
             }
         })
         return details
-    }
-
-    companion object {
-        @Volatile
-        private var INSTANCE: MovieRepository? = null
-
-        fun getInstance(remoteRepository: RemoteRepositoryJava): MovieRepository? {
-            if (INSTANCE == null) {
-                synchronized(MovieRepository::class.java) {
-                    if (INSTANCE == null) {
-                        INSTANCE =
-                            MovieRepository(remoteRepository)
-                    }
-                }
-            }
-            return INSTANCE
-        }
     }
 }
 

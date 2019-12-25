@@ -14,8 +14,10 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import javax.inject.Inject
+import javax.inject.Singleton
 
-class RemoteRepository @Inject constructor(val apiService: ApiService) {
+@Singleton
+open class RemoteRepository @Inject constructor(private val apiService: ApiService) {
     private val SERVICE_LATENCY_IN_MILLIS: Long = 2000
 
     fun getMovies(callback: LoadMoviesCallback) {
@@ -107,13 +109,13 @@ class RemoteRepository @Inject constructor(val apiService: ApiService) {
         }, SERVICE_LATENCY_IN_MILLIS)
     }
 
-    interface LoadTvShowsCallback {
-        fun onSuccess(response: List<TVShow>)
+    interface LoadMoviesCallback {
+        fun onSuccess(response: List<Movie>)
         fun onError(message: String?)
     }
 
-    interface LoadMoviesCallback {
-        fun onSuccess(response: List<Movie>)
+    interface LoadTvShowsCallback {
+        fun onSuccess(response: List<TVShow>)
         fun onError(message: String?)
     }
 

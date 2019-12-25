@@ -8,7 +8,9 @@ import com.kucingselfie.jetpacksubmission.common.Result
 import com.kucingselfie.jetpacksubmission.data.source.MovieRepository
 import com.kucingselfie.jetpacksubmission.model.DetailTvShowModel
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class DetailTvShowViewModel @Inject constructor(repository: MovieRepository) : ViewModel() {
     private val _tvShowId = MutableLiveData<Int>()
     val tvShowId: LiveData<Int> get() = _tvShowId
