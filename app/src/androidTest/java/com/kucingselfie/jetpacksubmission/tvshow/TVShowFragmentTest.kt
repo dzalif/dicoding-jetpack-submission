@@ -4,6 +4,7 @@ import androidx.databinding.DataBindingComponent
 import androidx.lifecycle.MutableLiveData
 import androidx.navigation.NavController
 import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -15,6 +16,7 @@ import com.kucingselfie.jetpacksubmission.model.TVShow
 import com.kucingselfie.jetpacksubmission.testing.SingleFragmentActivity
 import com.kucingselfie.jetpacksubmission.tvshow.list.TVShowFragment
 import com.kucingselfie.jetpacksubmission.tvshow.list.TvShowViewModel
+import com.kucingselfie.jetpacksubmission.ui.home.HomeFragmentDirections
 import com.kucingselfie.jetpacksubmission.util.*
 import org.hamcrest.CoreMatchers.not
 import org.junit.Before
@@ -23,6 +25,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mockito
 import org.mockito.Mockito.mock
+import org.mockito.Mockito.verify
 
 @RunWith(AndroidJUnit4::class)
 class TVShowFragmentTest {
@@ -69,6 +72,7 @@ class TVShowFragmentTest {
             )
         )
         result.postValue(Result.Success(tvShows))
+        //check progress bar not displayed
         onView(withId(R.id.progress_bar)).check(matches(not(isDisplayed())))
         onView(listMatcher().atPosition(0))
             .check(matches(hasDescendant(withText("foo"))))
@@ -77,12 +81,26 @@ class TVShowFragmentTest {
             .check(matches(isDisplayed()))
     }
 
+    @Test
+    fun navigateToDetail() {
+        val tvShows = mutableListOf<TVShow>()
+        tvShows.add(
+            TVShow(
+                0,
+                "foo", "bar", "buzz"
+            )
+        )
+        result.postValue(Result.Success(tvShows))
+        onView(withText("foo")).perform(click())
+        verify(tvShowFragment.navController).navigate(HomeFragmentDirections.actionHomeFragmentToDetailTvShowFragment(0))
+    }
+
     private fun listMatcher(): RecyclerViewMatcher {
         return RecyclerViewMatcher(R.id.rvTvShow)
     }
 
     class TestTVShowFragment : TVShowFragment() {
-        val navController: NavController = mock(NavController::class.java)
+        val navController = mock<NavController>()
         override fun navController() = navController
     }
 }

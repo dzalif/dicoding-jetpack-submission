@@ -26,7 +26,7 @@ buildscript {
         idleResourceVersion = '3.2.0'
         navigationVersion = '1.0.0'
         mockitoTestVersion = '2.25.0'
-        daggerVersion = '2.23.2'
+        daggerVersion = '2.16'
         gsonVersion = '2.8.2'
         retrofitVersion = '2.6.0'
         okhttp = '3.10.0'

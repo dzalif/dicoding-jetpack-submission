@@ -31,7 +31,7 @@ class MovieFragment : Fragment(), Injectable {
     lateinit var appExecutors: AppExecutors
 
     // mutable for testing
-    private var dataBindingComponent: DataBindingComponent = FragmentDataBindingComponent(this)
+    var dataBindingComponent: DataBindingComponent = FragmentDataBindingComponent(this)
     var binding by autoCleared<MovieFragmentBinding>()
     private var adapter by autoCleared<MovieAdapter>()
     private val viewModel: MovieViewModel by viewModels { viewModelFactory }
