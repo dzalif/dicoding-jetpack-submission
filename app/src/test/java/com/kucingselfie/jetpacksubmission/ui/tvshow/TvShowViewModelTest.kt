@@ -14,6 +14,8 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.mockito.Mockito
+import org.mockito.Mockito.`when`
+import org.mockito.Mockito.verify
 
 @Suppress("UNCHECKED_CAST")
 @RunWith(JUnit4::class)
@@ -35,9 +37,9 @@ class TvShowViewModelTest {
         val tvShowsResult = MutableLiveData<Result<List<TVShow>>>()
         val tvShows = FakeRemoteData.getDummyTVShows()
         tvShowsResult.postValue(Result.Success(tvShows))
-        Mockito.`when`(repo.getTvShows()).thenReturn(tvShowsResult)
+        `when`(repo.getTvShows()).thenReturn(tvShowsResult)
         val observer = Mockito.mock(Observer::class.java)
         viewModel?.tvShows?.observeForever(observer as Observer<in Result<List<TVShow>>>)
-        Mockito.verify(repo).getTvShows()
+        verify(repo).getTvShows()
     }
 }

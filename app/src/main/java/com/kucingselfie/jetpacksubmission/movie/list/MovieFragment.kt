@@ -23,7 +23,6 @@ import javax.inject.Inject
 
 @OpenForTesting
 class MovieFragment : Fragment(), Injectable {
-
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
@@ -69,6 +68,6 @@ class MovieFragment : Fragment(), Injectable {
     /**
      * Created to be able to override in tests
      */
-    open fun navController() = findNavController()
+    fun navController() = findNavController()
 
 }

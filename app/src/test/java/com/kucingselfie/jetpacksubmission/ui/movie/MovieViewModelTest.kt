@@ -15,6 +15,7 @@ import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.mockito.Mockito
 import org.mockito.Mockito.mock
+import org.mockito.Mockito.verify
 
 @Suppress("UNCHECKED_CAST")
 @RunWith(JUnit4::class)
@@ -39,6 +40,6 @@ class MovieViewModelTest {
         Mockito.`when`(repo.getMovies()).thenReturn(moviesResult)
         val observer = mock(Observer::class.java)
         viewModel?.movies?.observeForever(observer as Observer<in Result<List<Movie>>>)
-        Mockito.verify(repo).getMovies()
+        verify(repo).getMovies()
     }
 }

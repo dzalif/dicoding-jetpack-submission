@@ -16,6 +16,8 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.mockito.Mockito
+import org.mockito.Mockito.`when`
+import org.mockito.Mockito.verify
 
 @RunWith(JUnit4::class)
 class DetailTvShowViewModelTest {
@@ -25,6 +27,7 @@ class DetailTvShowViewModelTest {
 
     private var viewModel: DetailTvShowViewModel? = null
     private val repo = Mockito.mock(MovieRepository::class.java)
+    private val tvShow = FakeRemoteData.getTvshowDetail()
 
     @Before
     fun setUp() {
@@ -34,14 +37,14 @@ class DetailTvShowViewModelTest {
     @Test
     fun dontFetchWithoutObservers() {
         viewModel?.setTvShowId(1)
-        Mockito.verify(repo, Mockito.never()).getDetail(Mockito.anyInt())
+        verify(repo, Mockito.never()).getDetail(Mockito.anyInt())
     }
 
     @Test
     fun fetchWhenObserved() {
         viewModel?.setTvShowId(1)
         viewModel?.results?.observeForever(mock())
-        Mockito.verify(repo).getDetailTvShow(1)
+        verify(repo).getDetailTvShow(1)
     }
 
     @Test
@@ -50,21 +53,21 @@ class DetailTvShowViewModelTest {
         viewModel?.setTvShowId(1)
         viewModel?.setTvShowId(2)
 
-        Mockito.verify(repo).getDetailTvShow(1)
-        Mockito.verify(repo).getDetailTvShow(2)
+        verify(repo).getDetailTvShow(1)
+        verify(repo).getDetailTvShow(2)
     }
 
     @Suppress("UNCHECKED_CAST")
     @Test
     fun getDetailTvShow() {
         val tvShowResult = MutableLiveData<Result<DetailTvShowModel>>()
-        val tvShow = FakeRemoteData.getTvshowDetail()
         viewModel?.setTvShowId(tvShow.id)
-        tvShowResult.postValue(Result.Success(tvShow))
-        Mockito.`when`(repo.getDetailTvShow(tvShow.id)).thenReturn(tvShowResult)
-        val observer = Mockito.mock(Observer::class.java)
-        viewModel?.results?.observeForever(observer as Observer<in Result<DetailTvShowModel>>)
-        Mockito.verify(repo).getDetailTvShow(tvShow.id)
+        val resultSuccess = Result.Success(tvShow)
+        tvShowResult.postValue(resultSuccess)
+        `when`(repo.getDetailTvShow(tvShow.id)).thenReturn(tvShowResult)
+        val observer = mock<Observer<Result<DetailTvShowModel>>>()
+        viewModel?.results?.observeForever(observer)
+        verify(observer).onChanged(resultSuccess)
         val resultData = viewModel?.results?.value?.data
         assertEquals(tvShow.id, resultData?.id)
         assertEquals(tvShow.description, resultData?.description)
