@@ -1,5 +1,4 @@
 apply plugin: 'com.android.application'
-apply plugin: 'jacoco'
 apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
@@ -19,7 +18,7 @@ android {
     dataBinding {
         enabled = true
     }
-    buildToolsVersion "29.0.2"
+    buildToolsVersion "29.0.3"
     defaultConfig {
         applicationId "com.kucingselfie.dicodingjetpacksubmission1"
         minSdkVersion 19
@@ -36,7 +35,6 @@ android {
         debug {
             applicationIdSuffix ".debug"
             debuggable true
-            testCoverageEnabled !project.hasProperty('android.injected.invoked.from.ide')
         }
     }
     compileOptions {
@@ -50,10 +48,6 @@ android {
         androidTest.java.srcDirs += "src/test-common/java"
         test.java.srcDirs += "src/test-common/java"
     }
-}
-
-jacoco {
-    toolVersion = "0.7.4+"
 }
 
 dependencies {
@@ -70,12 +64,8 @@ dependencies {
 
     // Dependencies for Architecture Component
     implementation "androidx.room:room-runtime:$roomVersion"
-    implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    implementation 'com.google.android.material:material:1.0.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'androidx.lifecycle:lifecycle-extensions:2.1.0'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.1.0'
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$archLifecycleVersion"
     annotationProcessor "androidx.room:room-compiler:$roomVersion"
     implementation "androidx.lifecycle:lifecycle-extensions:$archLifecycleVersion"
     annotationProcessor "androidx.lifecycle:lifecycle-compiler:$archLifecycleVersion"
@@ -119,7 +109,6 @@ dependencies {
     androidTestImplementation "org.mockito:mockito-android:$mockitoVersion"
 
     // Android Testing Support Library's runner and rules
-    androidTestImplementation "androidx.test.ext:junit:$androidXTestVersion"
     androidTestImplementation "androidx.test:core:$androidXTestVersion"
     androidTestImplementation "androidx.test:rules:$androidXTestVersion"
     androidTestImplementation "androidx.test.espresso:espresso-core:$espressoVersion"
@@ -128,51 +117,14 @@ dependencies {
 
     // Dependencies for Idle Result
     implementation "androidx.test.espresso:espresso-idling-resource:$idleResourceVersion"
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.1.0'
-    implementation 'androidx.navigation:navigation-ui-ktx:2.1.0'
+    implementation "androidx.navigation:navigation-fragment-ktx:$navigationVersion"
+    implementation "androidx.navigation:navigation-ui-ktx:$navigationVersion"
 
     androidTestImplementation "org.mockito:mockito-core:$mockitoVersion"
     androidTestImplementation "org.mockito:mockito-android:$mockitoTestVersion"
-    debugImplementation 'androidx.fragment:fragment-testing:1.2.0-rc04'
+    debugImplementation "androidx.fragment:fragment-testing:$fragmentTestVersion"
 
     androidExtensions {
         experimental = true
-    }
-
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.0') {
-        exclude group: 'javax.inject'
-    }
-}
-
-task fullCoverageReport(type: JacocoReport) {
-    dependsOn 'createDebugCoverageReport'
-    dependsOn 'testDebugUnitTest'
-    reports {
-        xml.enabled = true
-        html.enabled = true
-    }
-
-    def fileFilter = ['**/R.class', '**/R$*.class', '**/BuildConfig.*', '**/Manifest*.*',
-                      '**/*Test*.*', 'android/**/*.*',
-                      '**/*_MembersInjector.class',
-                      '**/Dagger*Component.class',
-                      '**/Dagger*Component$Builder.class',
-                      '**/*_*Factory.class',
-                      '**/*ComponentImpl.class',
-                      '**/*SubComponentBuilder.class']
-    def debugTree = fileTree(dir: "${buildDir}/intermediates/classes/debug", excludes: fileFilter)
-    def mainSrc = "${project.projectDir}/src/main/java"
-
-    sourceDirectories = files([mainSrc])
-    classDirectories = files([debugTree])
-    executionData = fileTree(dir: "$buildDir", includes: [
-            "jacoco/testDebugUnitTest.exec",
-            "outputs/code-coverage/connected/*coverage.ec"
-    ])
-}
-
-project.tasks.whenTaskAdded {
-    if (it.name == "testReleaseUnitTest") {
-        it.enabled = false
     }
 }
